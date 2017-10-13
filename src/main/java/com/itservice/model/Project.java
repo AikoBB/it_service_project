@@ -17,6 +17,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -31,6 +35,8 @@ public class Project {
 	private Date endDate;
 	private int priority;
 	private String comment;
+	
+	public Project(){}
 	
 	public Project(long id, Set<CompanyProject> companies, Set<PersonProject> performers,
 			Date startDate, Date endDate, int priority, String comment) {
@@ -102,6 +108,8 @@ public class Project {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.project")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.DELETE })
+	@Fetch(FetchMode.SELECT)
 	public Set<PersonProject> getPerformers() {
 		return performers;
 	}
@@ -110,6 +118,7 @@ public class Project {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.project")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	public Set<CompanyProject> getCompanies() {
 		return companies;
 	}

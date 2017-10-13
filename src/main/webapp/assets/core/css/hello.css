@@ -1,0 +1,7 @@
+.checkbox-inline label, .radio-inline label{
+  font-weight: normal;
+}
+
+.inlinetd{
+	display: inline-block;
+}

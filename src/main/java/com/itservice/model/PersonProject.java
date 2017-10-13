@@ -18,7 +18,7 @@ import com.itservice.constant.PersonRole;
 @Entity
 @Table(name="person_project", schema="public")
 @AssociationOverrides({@AssociationOverride(name="pk.person", joinColumns = @JoinColumn(name = "PERSON_ID")),
-					  @AssociationOverride(name="pk.project",joinColumns = @JoinColumn(name = "CATEGORY_ID"))})
+					  @AssociationOverride(name="pk.project",joinColumns = @JoinColumn(name = "PROJECT_ID"))})
 public class PersonProject implements Serializable{
 
 	private static final long serialVersionUID = -1554319703235576568L;

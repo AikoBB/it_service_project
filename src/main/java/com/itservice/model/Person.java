@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
@@ -30,6 +32,7 @@ public class Person implements Serializable{
 	private String email;
 	private Set<PersonProject> projects = new HashSet<PersonProject>(0);
 	
+	public Person(){}
 	
 	public Person(long id, String name, String surname, String lastname, String email) {
 		this.id = id;
@@ -87,6 +90,7 @@ public class Person implements Serializable{
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.person")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	public Set<PersonProject> getProjects() {
 		return this.projects;
 	}
@@ -95,4 +99,7 @@ public class Person implements Serializable{
 		this.projects = projects;
 	}
 
+	public String toString(){
+		return this.getName() + " " + this.getSurname()+" "+this.getEmail();
+	}
 }

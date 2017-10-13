@@ -24,6 +24,8 @@ public class Company implements Serializable{
 	private String title;
 	private Set<CompanyProject>projects = new HashSet<CompanyProject>();
 	
+	public Company(){}
+	
 	public Company(long id, String title) {
 		this.id = id;
 		this.title = title;
@@ -54,6 +56,10 @@ public class Company implements Serializable{
 	}
 	public void setProjects(Set<CompanyProject> projects) {
 		this.projects = projects;
+	}
+	
+	public String toString(){
+		return this.getTitle();
 	}
 
 }

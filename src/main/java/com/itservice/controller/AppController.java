@@ -14,7 +14,7 @@ public class AppController {
 
 	@RequestMapping(value = { URI.MAIN, URI.HOME }, method = RequestMethod.GET)
 	public String homePage() {
-		return "home";
+		return "redirect:"+URI.PROJECT_LIST;
 	}
 	
 }

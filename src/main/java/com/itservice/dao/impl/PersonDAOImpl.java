@@ -30,6 +30,10 @@ public class PersonDAOImpl extends AbstractDAO<Person> implements PersonDAO{
 
 	@Override
 	public void delete(long id) {
+		Query delete = getSession().createSQLQuery("DELETE FROM person_project WHERE PERSON_ID=:id");
+		delete.setLong("id", id);
+		delete.executeUpdate();
+		
 		Query query = getSession().createSQLQuery("DELETE FROM person WHERE id=:id");
 		query.setLong("id", id);
 		query.executeUpdate();

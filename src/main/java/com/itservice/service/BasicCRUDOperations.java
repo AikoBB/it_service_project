@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface BasicCRUDOperations<T> {
 	
-	T findById(int id);
+	T findById(long id);
 	void save(T obj);
 	void update(T obj);
-	void delete(int id);
+	void delete(long id);
 	List<T> list();
 }

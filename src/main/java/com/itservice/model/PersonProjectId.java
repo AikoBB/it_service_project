@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Embeddable
 public class PersonProjectId implements Serializable{
 
@@ -14,6 +17,7 @@ public class PersonProjectId implements Serializable{
 	private Project project;
 	
 	@ManyToOne
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	public Person getPerson() {
 		return person;
 	}
@@ -22,6 +26,7 @@ public class PersonProjectId implements Serializable{
 	}
 	
 	@ManyToOne
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	public Project getProject() {
 		return project;
 	}
